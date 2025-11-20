@@ -4,14 +4,14 @@
 Implementación de una solución de virtualización con Docker, RAID 1, LVM y monitorización en tiempo real con Netdata para la consolidación de servicios de una organización.
 
 ### Presentado por:
-* Karen Vanessa Restrepo Morales*
-* Leonardo Gallego Rios*
-* Johan Esteban Melchor Morales*
+* Karen Vanessa Restrepo Morales
+* Leonardo Gallego Rios
+* Johan Esteban Melchor Morales
 
 ### Orden de ejecucion .sh:
-* setup_raid.sh*
-* setup_lvm.sh*
-* deploy_containers.sh*
-* deply_netdata.sh*
-* verify_setup.sh*
-* clean.sh*
+* 1. setup_raid.sh
+* 2. setup_lvm.sh
+* 3. deploy_containers.sh
+* 4. deply_netdata.sh
+* 5. verify_setup.sh
+* 6. clean.sh (opcional)
