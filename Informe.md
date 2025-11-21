@@ -58,9 +58,9 @@ Parámetros explicados:
 * \--raid-devices=3: Especifica que cada RAID usará 3 discos  
 * /dev/md0, /dev/md1, /dev/md2: Nombres de los dispositivos RAID creados
 
-![][image1]  
-![][image2]  
-![][image3]
+![][image1](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image51.png?raw=true) 
+![][image2](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image26.png?raw=true) 
+![][image3](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image37.png?raw=true)
 
 ### **4.1.3 Verificación del Estado RAID**
 
