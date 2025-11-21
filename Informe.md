@@ -60,7 +60,7 @@ Parámetros explicados:
 
 ![][image1](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image51.png?raw=true) 
 ![][image2](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image26.png?raw=true) 
-![][image3](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image37.png?raw=true)
+![][image3](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/e5dae7d027c9d2b5cb5a5295ad93b4669258e6ef/docs/evidencias/image37.png)
 
 ### **4.1.3 Verificación del Estado RAID**
 
