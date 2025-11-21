@@ -8,10 +8,6 @@ Implementación de una solución de virtualización con Docker, RAID 1, LVM y mo
 * Leonardo Gallego Rios
 * Johan Esteban Melchor Morales
 
-### Orden de ejecucion .sh:
-* setup_raid.sh
-* setup_lvm.sh
-* deploy_containers.sh
-* deply_netdata.sh
-* verify_setup.sh
-* clean.sh (opcional)
+### Para ejecutar:
+* Master.sh
+
