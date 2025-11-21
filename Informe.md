@@ -68,36 +68,36 @@ Se verifica el estado de sincronización de los RAIDs recién creados.
 
 Confirmar que los discos se están sincronizando correctamente y que el RAID está operativo.
 
-![][image4]  
-![][image5]  
-![][image6]  
-![][image7]  
-![][image8]
+![image4](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image42.png?raw=true)
+![image5](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image48.png?raw=true)  
+![image6](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image4.png?raw=true)
+![image7](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image28.png?raw=true)
+![image8](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image20.png?raw=true)
 
 ## **4.2 Configuración de LVM**
 
 ### **4.2.1 Volúmenes Físicos y Grupos** 
 Se inicializan los dispositivos RAID como "Physical Volumes" de LVM, luego se agrupan los volúmenes físicos en "Volume Groups" para después proceder a crear volúmenes lógicos de 1.5GB dentro de cada grupo de volúmenes.
 
-![][image9]  
-![][image10]  
-![][image11]
+![image9](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image49.png?raw=true) 
+![image10](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image44.png?raw=true)  
+![image11](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image5.png?raw=true)
 
 ### **4.2.2 Formateo y Montaje**
 Se formatea el volumen lógico con sistema de archivos ext4, después se crea directorio de montaje y luego se monta el volumen en el directorio.
 
-![][image12] 
-![][image13] 
-![][image14] 
-![][image15] 
-![][image16]
+![image12](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image34.png?raw=true)
+![image13](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image45.png?raw=true)
+![image14](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image54.png?raw=true)
+![image15](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image9.png?raw=true) 
+![image16](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image53.png?raw=true)
 
 Se agregan las configuraciones de montaje al archivo fstab.
 
 ## **4.3 Creación de Imágenes Docker Personalizadas**
 
-![][image17] 
-![][image18]
+![image17](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image22.png?raw=true)
+![image18](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image6.png?raw=true)
 
 Se crea una imagen personalizada basada en Apache Alpine donde Copia archivos HTML personalizados, Declara un volumen para persistencia y expone el puerto 80\.
 
@@ -107,46 +107,47 @@ Similar a Apache, se crea una imagen Nginx personalizada.
 
 ### **4.3.1 Dockerfile \- Apache**
 
-![][image19]
+![image19](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image16.png?raw=true)
 
 ### **4.3.2 Dockerfile \- MySQL**
 
-![][image20]
+![image20](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image17.png?raw=true)
 
 ### **4.3.3 Dockerfile \- Nginx**
 
-![][image21]
+![image21](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image13.png?raw=true)
 
 ### **4.3.4 Archivos adicionales para Apache**
 
-![][image22]
+![image22](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image24.png?raw=true)
 
 ### **4.3.5 Archivos adicionales para mysql**
-
-![][image23]  
-![][image24]
+custom.cnf
+![image23](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image41.png?raw=true)
+01-init.sql
+![image24](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image11.png?raw=true)
 
 ### **4.3.6 Archivos adicionales para Nginx** 
 
-![][image25]
+![image25](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image23.png?raw=true)
 
 ### **4.3.7 Estructura**  
 
-![][image26]
+![image26](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image12.png?raw=true)
 
 ## **4.4 Despliegue de Contenedores**
 
 #### **4.4.1 Construcción de Imágenes** Se construyen las imágenes Docker a partir de los Dockerfiles.
 
-![][image27]
-![][image28]  
-![][image29]  
-![][image30]
+![image27](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image21.png?raw=true)
+![image28](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image33.png?raw=true)
+![image29](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image47.png?raw=true)
+![image30](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image35.png?raw=true)
 
 #### **4.4.2 Ejecución de Contenedores**
 
-![][image31]
-![][image32]
+![image31](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image52.png?raw=true)
+![image32](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image39.png?raw=true)
 
 # **5.0 PRUEBAS Y RESULTADOS**
 
@@ -154,40 +155,40 @@ Similar a Apache, se crea una imagen Nginx personalizada.
 
 ### **5.1.1 Apache**
 
-![][image33]
+![image33](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image3.png?raw=true)
 
 ### **5.1.2 Nginx**
 
-![][image34]
+![image34](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image31.png?raw=true)
 
 ## **5.2 Pruebas de MySQL**
 
-![][image35]
-![][image36]
+![image35](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image8.png?raw=true)
+![image36](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image38.png?raw=true)
 
 ## **5.3 Pruebas de Persistencia**
 
 ### **5.3.1 Modificación de Contenido**
 
-![][image37]
-![][image38]  
-![][image39]  
-![][image40]  
-![][image41]  
-![][image42]  
-![][image43]  
-![][image44]
+![image37](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image43.png?raw=true)
+![image38](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image19.png?raw=true)
+![image39](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image50.png?raw=true)
+![image40](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image27.png?raw=true)
+![image41](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image1.png?raw=true)
+![image42](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image30.png?raw=true)
+![image43](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image56.png?raw=true)
+![image44](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image7.png?raw=true)
 
 **Resultado:** 
 El cambio persiste después del reinicio del contenedor.
 
 ### **5.3.2 Persistencia en MySQL**
 
-![][image45]
-![][image46]
-![][image47]
-![][image48]  
-![][image49]
+![image45](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image46.png?raw=true)
+![image46](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image15.png?raw=true)
+![image47](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image55.png?raw=true)
+![image48](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image25.png?raw=true)
+![image49](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image2.png?raw=true)
 
 **Resultado:** 
 Los datos se mantuvieron después del reinicio.
@@ -201,8 +202,9 @@ Se configura Netdata como contenedor con acceso a:
 
 * Docker socket (para monitorizar contenedores)  
 * Sistema de archivos /proc y /sys (para métricas del host)  
-* Archivo Docker Compose  
-  ![][image50]
+* Archivo Docker Compose
+
+![image50](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image32.png?raw=true)
 
 **Volúmenes y Permisos Explicados**
 
@@ -213,13 +215,13 @@ Se configura Netdata como contenedor con acceso a:
 
 ### **Despliegue** Se ejecuta Netdata en segundo plano.
 
-![][image51]
-![][image52]
+![image51](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image14.png?raw=true)
+![image52](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image18.png?raw=true)
 
 ### **Resultados de la Monitorización**
 
-![][image53]
-![][image54]
+![image53](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image29.png?raw=true)
+![image54](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image10.png?raw=true)
 
 #### **Contenedores Monitoreados**
 
@@ -228,8 +230,7 @@ Se configura Netdata como contenedor con acceso a:
 * Nginx: Tráfico HTTP, conexiones activas  
 * Netdata: Auto-monitoreo
 
-![][image55]
-![][image56]
+![image55](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image36.png?raw=true)
 
 **Métricas del Host System**
 
@@ -237,6 +238,8 @@ Se configura Netdata como contenedor con acceso a:
 * I/O de discos (incluyendo los RAIDs)  
 * Tráfico de red  
 * Uso de los volúmenes LVM
+
+![image56](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image40.png?raw=true)
 
 **ANÁLISIS DE RESULTADOS**
 
