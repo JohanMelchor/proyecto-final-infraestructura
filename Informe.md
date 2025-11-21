@@ -122,9 +122,12 @@ Similar a Apache, se crea una imagen Nginx personalizada.
 ![image22](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image24.png?raw=true)
 
 ### **4.3.5 Archivos adicionales para mysql**
-custom.cnf
+### *custom.cnf*
+
 ![image23](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image41.png?raw=true)
-01-init.sql
+
+### *01-init.sql*
+
 ![image24](https://github.com/JohanMelchor/proyecto-final-infraestructura/blob/main/docs/evidencias/image11.png?raw=true)
 
 ### **4.3.6 Archivos adicionales para Nginx** 
