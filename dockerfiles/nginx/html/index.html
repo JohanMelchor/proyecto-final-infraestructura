@@ -1,26 +1,329 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <title>Servidor Nginx - Proyecto Final</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; padding-top: 60px; background: #f2f2f2; }
-    h1 { color: #333; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 6px 0; font-size: 1.1rem; }
-    .box { background: white; width: 60%; margin: auto; padding: 25px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infraestructura RAID + LVM + Docker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 1000px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title::before {
+            content: "▶";
+            color: #764ba2;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tech-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-card h3 {
+            color: #333;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+
+        .tech-card p {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .team {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            padding: 30px;
+            border-radius: 15px;
+            color: white;
+        }
+
+        .team h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+        }
+
+        .team-members {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .member {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            min-width: 200px;
+        }
+
+        .member-icon {
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #667eea;
+            font-weight: bold;
+        }
+
+        .member h3 {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .features {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .features li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .features li::before {
+            content: "✓";
+            background: #667eea;
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .footer {
+            background: #2d3748;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tech-stack {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="box">
-    <h1>Servidor Nginx - Proyecto Final</h1>
-    <p>Integrantes:</p>
-    <ul>
-      <li>Karen Vanessa Restrepo Morales</li>
-      <li>Leonardo Gallego Rios</li>
-      <li>Johan Esteban Melchor Morales</li>
-    </ul>
-  </div>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Infraestructura Computacional</h1>
+            <p>Proyecto Final - Virtualización con Docker, RAID 1 y LVM</p>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <h2 class="section-title">Arquitectura del Sistema</h2>
+                <p>Sistema de virtualización robusto implementando alta disponibilidad mediante RAID 1, gestión flexible de almacenamiento con LVM y contenedores Docker para servicios aislados.</p>
+            </div>
+
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">Arreglos RAID 1</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">9</div>
+                    <div class="stat-label">Discos Físicos</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Contenedores</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">4.5GB</div>
+                    <div class="stat-label">Almacenamiento LVM</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Stack Tecnológico</h2>
+                <div class="tech-stack">
+                    <div class="tech-card">
+                        <h3>🐳 Docker</h3>
+                        <p>Contenedores para Apache, MySQL, Nginx y Netdata con aislamiento completo</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>💾 RAID 1</h3>
+                        <p>Redundancia de datos mediante mirroring en 3 arreglos independientes</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>📊 LVM</h3>
+                        <p>Gestión dinámica de volúmenes lógicos sobre dispositivos RAID</p>
+                    </div>
+                    <div class="tech-card">
+                        <h3>📈 Netdata</h3>
+                        <p>Monitorización en tiempo real de contenedores y sistema host</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2 class="section-title">Características Implementadas</h2>
+                <ul class="features">
+                    <li>Alta disponibilidad mediante RAID 1 con tolerancia a fallos de disco</li>
+                    <li>Persistencia de datos garantizada con volúmenes LVM montados</li>
+                    <li>Servicios web (Apache + Nginx) con contenido personalizado</li>
+                    <li>Base de datos MySQL con configuración optimizada</li>
+                    <li>Monitorización completa con Netdata Dashboard</li>
+                    <li>Aislamiento de servicios mediante contenedores Docker</li>
+                    <li>Escalabilidad horizontal y vertical del sistema</li>
+                </ul>
+            </div>
+
+            <div class="team">
+                <h2>👥 Equipo de Desarrollo</h2>
+                <div class="team-members">
+                    <div class="member">
+                        <div class="member-icon">KR</div>
+                        <h3>Karen Vanessa</h3>
+                        <p>Restrepo Morales</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">LG</div>
+                        <h3>Leonardo</h3>
+                        <p>Gallego Rios</p>
+                    </div>
+                    <div class="member">
+                        <div class="member-icon">JM</div>
+                        <h3>Johan Esteban</h3>
+                        <p>Melchor Morales</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Universidad del Quindío - Programa de Ingeniería de Sistemas</p>
+            <p>Infraestructura Computacional - 2025</p>
+        </div>
+    </div>
 </body>
 </html>
+
+
 
