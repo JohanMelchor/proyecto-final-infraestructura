@@ -26,16 +26,16 @@ Implementar una solución de virtualización basada en contenedores con almacena
 * Desplegar contenedores con volúmenes persistentes  
 * Verificar persistencia y funcionamiento de servicios
 
-# **METODOLOGÍAS Y HERRAMIENTAS** 
+# **3.0 METODOLOGÍAS Y HERRAMIENTAS** 
 
-# **3.1 Herramientas Utilizadas**
+## **3.1 Herramientas Utilizadas**
 
 * **Sistema Operativo:** Ubuntu Server 22.04 LTS  
 * **Virtualización:** Docker 24.x  
 * **Almacenamiento:** mdadm (RAID), LVM2  
 * **Servicios:** Apache HTTPD, MySQL 8.0, Nginx
 
-# **3.2 Enfoque Metodológico**
+## **3.2 Enfoque Metodológico**
 
 Se siguió un enfoque incremental:
 
@@ -44,10 +44,10 @@ Se siguió un enfoque incremental:
 * Despliegue de contenedores con volúmenes  
 * Pruebas de funcionamiento y persistencia
 
-**DESARROLLO DEL PROYECTO**  
-**4.1 Configuración de RAID 1**
+# **4.0 DESARROLLO DEL PROYECTO**  
+## **4.1 Configuración de RAID 1**
 
-**4.1.2 Creación de Arreglos RAID**  
+### **4.1.2 Creación de Arreglos RAID**  
 Se crean tres arreglos RAID 1 independientes, cada uno usando 3 discos. RAID 1 significa "mirroring" \- los datos se duplican en todos los discos del array.
 
 Para proporcionar redundancia \- si un disco falla, los datos permanecen accesibles en los otros dos discos del mismo RAID.
@@ -60,31 +60,44 @@ Parámetros explicados:
 
 ![][image1]  
 ![][image2]  
-![][image3]  
-**4.1.3 Verificación del Estado RAID**
+![][image3]
+
+### **4.1.3 Verificación del Estado RAID**
 
 Se verifica el estado de sincronización de los RAIDs recién creados.
 
-Confirmar que los discos se están sincronizando correctamente y que el RAID está operativo.  
+Confirmar que los discos se están sincronizando correctamente y que el RAID está operativo.
+
 ![][image4]  
 ![][image5]  
 ![][image6]  
 ![][image7]  
 ![][image8]
 
-### **4.2 Configuración de LVM**
+## **4.2 Configuración de LVM**
 
-#### **4.2.1 Volúmenes Físicos y Grupos** Se inicializan los dispositivos RAID como "Physical Volumes" de LVM, luego se agrupan los volúmenes físicos en "Volume Groups" para después proceder a crear volúmenes lógicos de 1.5GB dentro de cada grupo de volúmenes.
+### **4.2.1 Volúmenes Físicos y Grupos** 
+Se inicializan los dispositivos RAID como "Physical Volumes" de LVM, luego se agrupan los volúmenes físicos en "Volume Groups" para después proceder a crear volúmenes lógicos de 1.5GB dentro de cada grupo de volúmenes.
 
 ![][image9]  
 ![][image10]  
 ![][image11]
 
-#### **4.2.2 Formateo y Montaje** Se formatea el volumen lógico con sistema de archivos ext4, después se crea directorio de montaje y luego se monta el volumen en el directorio.
+### **4.2.2 Formateo y Montaje**
+Se formatea el volumen lógico con sistema de archivos ext4, después se crea directorio de montaje y luego se monta el volumen en el directorio.
 
-####  ![][image12] ![][image13] ![][image14] ![][image15] ![][image16]Se agregan las configuraciones de montaje al archivo fstab.
+![][image12] 
+![][image13] 
+![][image14] 
+![][image15] 
+![][image16]
 
-### **4.3 Creación de Imágenes Docker Personalizadas** ![][image17] ![][image18]
+Se agregan las configuraciones de montaje al archivo fstab.
+
+## **4.3 Creación de Imágenes Docker Personalizadas**
+
+![][image17] 
+![][image18]
 
 Se crea una imagen personalizada basada en Apache Alpine donde Copia archivos HTML personalizados, Declara un volumen para persistencia y expone el puerto 80\.
 
@@ -92,74 +105,71 @@ Se crea una imagen MySQL personalizada que aplica configuración personalizada, 
 
 Similar a Apache, se crea una imagen Nginx personalizada.
 
-#### **4.3.1 Dockerfile \- Apache** ![][image19] **4.3.2 Dockerfile \- MySQL**
+### **4.3.1 Dockerfile \- Apache**
+
+![][image19]
+
+### **4.3.2 Dockerfile \- MySQL**
 
 ![][image20]
 
-#### **4.3.3 Dockerfile \- Nginx**
+### **4.3.3 Dockerfile \- Nginx**
 
 ![][image21]
 
-**4.3.4 Archivos adicionales para Apache**
+### **4.3.4 Archivos adicionales para Apache**
 
 ![][image22]
 
-**4.3.5 Archivos adicionales para mysql**  
+### **4.3.5 Archivos adicionales para mysql**
+
 ![][image23]  
 ![][image24]
 
-**4.3.6 Archivos adicionales para Nginx**  
+### **4.3.6 Archivos adicionales para Nginx** 
+
 ![][image25]
 
-**4.3.7 Estructura**  
+### **4.3.7 Estructura**  
+
 ![][image26]
 
-### **4.4 Despliegue de Contenedores**
+## **4.4 Despliegue de Contenedores**
 
 #### **4.4.1 Construcción de Imágenes** Se construyen las imágenes Docker a partir de los Dockerfiles.
 
 ![][image27]
-
 ![][image28]  
 ![][image29]  
 ![][image30]
 
-#### **4.4.2 Ejecución de Contenedores** ![][image31]
+#### **4.4.2 Ejecución de Contenedores**
 
+![][image31]
 ![][image32]
 
-# **PRUEBAS Y RESULTADOS**
+# **5.0 PRUEBAS Y RESULTADOS**
 
-### **5.1 Verificación de Servicios Web**
+## **5.1 Verificación de Servicios Web**
 
-#### **5.1.1 Apache**
+### **5.1.1 Apache**
 
-# ![][image33]
+![][image33]
 
-#### **5.1.2 Nginx**
+### **5.1.2 Nginx**
 
-# ![][image34]
+![][image34]
 
-### 
+## **5.2 Pruebas de MySQL**
 
-### **5.2 Pruebas de MySQL**
+![][image35]
+![][image36]
 
-# ![][image35]
+## **5.3 Pruebas de Persistencia**
 
-# ![][image36]
+### **5.3.1 Modificación de Contenido**
 
-### 
-
-### 
-
-### 
-
-### 
-
-### **5.3 Pruebas de Persistencia**
-
-#### **5.3.1 Modificación de Contenido** ![][image37]
-
+![][image37]
 ![][image38]  
 ![][image39]  
 ![][image40]  
@@ -168,24 +178,22 @@ Similar a Apache, se crea una imagen Nginx personalizada.
 ![][image43]  
 ![][image44]
 
-**Resultado:** El cambio persiste después del reinicio del contenedor.
+**Resultado:** 
+El cambio persiste después del reinicio del contenedor.
 
-#### **5.3.2 Persistencia en MySQL**
+### **5.3.2 Persistencia en MySQL**
 
-#### ![][image45]
-
+![][image45]
 ![][image46]
-
 ![][image47]
-
 ![][image48]  
 ![][image49]
 
-**Resultado:** Los datos se mantuvieron después del reinicio.
+**Resultado:** 
+Los datos se mantuvieron después del reinicio.
 
-**IMPLEMENTACIÓN DE MONITORIZACIÓN CON NETDATA**  
+# **IMPLEMENTACIÓN DE MONITORIZACIÓN CON NETDATA**  
 **Objetivo de la Monitorización**
-
 Implementar un sistema de monitorización en tiempo real para supervisar el rendimiento de los contenedores Docker y el host system.
 
 **Configuración de Netdata**  
@@ -203,10 +211,14 @@ Se configura Netdata como contenedor con acceso a:
 * SYS\_PTRACE: Para profiling de aplicaciones  
 * Puertos: 19999 para el dashboard web
 
-### **Despliegue** Se ejecuta Netdata en segundo plano. ![][image51] ![][image52]
+### **Despliegue** Se ejecuta Netdata en segundo plano.
 
-### **Resultados de la Monitorización** ![][image53]
+![][image51]
+![][image52]
 
+### **Resultados de la Monitorización**
+
+![][image53]
 ![][image54]
 
 #### **Contenedores Monitoreados**
@@ -217,8 +229,9 @@ Se configura Netdata como contenedor con acceso a:
 * Netdata: Auto-monitoreo
 
 ![][image55]
+![][image56]
 
-#### ![][image56]**Métricas del Host System**
+**Métricas del Host System**
 
 * Uso de CPU y memoria del servidor  
 * I/O de discos (incluyendo los RAIDs)  
@@ -234,8 +247,7 @@ Se configura Netdata como contenedor con acceso a:
 
 # **CONCLUSIONES** 
 
-* # Se implementó exitosamente una infraestructura de virtualización con Docker, RAID 1 y LVM.
-
+* Se implementó exitosamente una infraestructura de virtualización con Docker, RAID 1 y LVM.
 * Los tres servicios (Apache, MySQL, Nginx) funcionan correctamente con persistencia de datos garantizada.  
 * La combinación RAID1 \+ LVM \+ Docker proporciona una solución robusta y escalable.  
 * Los volúmenes Docker montados sobre LVM demostraron efectividad en la persistencia de datos.  
